@@ -1,10 +1,5 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-import Home from "../components/Home.vue"
-import Add from  "../components/Add.vue"
-import Collect from "../components/Collect.vue"
-import List from "../components/List.vue"
-import Detail from "../components/Detail.vue"
 
 Vue.use(Router)
 
@@ -16,24 +11,25 @@ export default new Router({
     },
     {
       path:'/home',
-      component:Home
+      component:() => import("../components/Home.vue"),
+      meta:{keepAlive:true}
     },
     {
       path:'/list',
-      component:List
+      component:() => import("../components/List.vue")
     },
     {
       path:'/datail/:bid',
-      component:Detail,
+      component:() => import("../components/Detail.vue"),
       name:"Detail"
     },
     {
       path:'/collect',
-      component:Collect
+      component:() => import("../components/Collect.vue")
     },
     {
       path:'/add',
-      component:Add
+      component:() => import("../components/Add.vue")
     }
   ],
   linkActiveClass:'active'

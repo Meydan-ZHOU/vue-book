@@ -3,47 +3,51 @@
       <v-header :back="false">
         <span slot="title">首页</span>>
       </v-header>
-      <div class="content-wrapper">
-        <v-swiper :swiperSlides="swiperSlides"></v-swiper>
-        <div class="bookContainer">
-          <h3>热门图书</h3>
-          <ul>
-            <li v-for="(book,index) in hotBooks" :key="index">
-              <img :src="book.bookCover">
-              <span>{{book.bookName}}</span><br>
-              <span>price:<span class="price">￥{{book.bookPrice}}</span></span>
-            </li>
-          </ul>
+      <v-loading v-if="loadding"></v-loading>
+      <template  v-if="!loadding">
+        <div class="content-wrapper">
+          <v-swiper :swiperSlides="swiperSlides"></v-swiper>
+          <div class="bookContainer">
+            <h3>热门图书</h3>
+            <ul>
+              <li v-for="(book,index) in hotBooks" :key="index">
+                <img :src="book.bookCover">
+                <span>{{book.bookName}}</span><br>
+                <span>price:<span class="price">￥{{book.bookPrice}}</span></span>
+              </li>
+            </ul>
+          </div>
         </div>
-      </div>
+      </template>
     </div>
 </template>
 <script type="text/ecmascript-6">
   import mHeader from '../base/mHeader.vue';
   import swiper from '../base/swiper.vue';
-  import {getSlider,getHotBook} from  "../api/index.js";
+  import loading from '../base/loading.vue';
+  import {getAll} from  "../api/index.js";
   export default {
     data(){
       return {
         swiperSlides:[],
-        hotBooks:[]
+        hotBooks:[],
+        loadding:true
       }
     },
     components:{
       "v-header":mHeader,
-      "v-swiper":swiper
+      "v-swiper":swiper,
+      "v-loading":loading
     },
     created(){
-      this.getSliders();
-      this.getHotBooks();
+      this.getAllData();
     },
     methods:{
-      async getSliders(){
-        const {slider}  =  await getSlider();
-        this.swiperSlides = slider;
-      },
-      async getHotBooks(){
-        this.hotBooks  =  await getHotBook();
+      async getAllData(){
+        let [sliders,hotBooks]  =  await getAll();
+        this.swiperSlides = sliders.slider;
+        this.hotBooks = hotBooks;
+        this.loadding = false;
       }
     }
   }
