@@ -3,6 +3,12 @@
 import Vue from 'vue'
 import App from './App'
 import router from './router'
+import "lib-flexible/flexible";
+import "./common/less/index.less";
+// 应用swiper插件
+import vueAwesomeSwiper from "vue-awesome-swiper";
+import "swiper/dist/css/swiper.css";
+Vue.use(vueAwesomeSwiper);
 
 Vue.config.productionTip = false
 

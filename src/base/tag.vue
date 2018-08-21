@@ -23,8 +23,21 @@
 
 <style type="text/stylus" lang="stylus" scoped>
   .tag{
+    width :100%;
+    height :40px;
+    text-align :center;
     position fixed;
     bottom :0;
     left :0;
+    display:flex;
+    flex-direction :row;
+    justify-content :space-around;
+    background :#2c3e50;
+    a{
+      display :flex;
+      flex-direction: column;
+      flex :1;
+      align-self :center;
+    }
   }
 </style>

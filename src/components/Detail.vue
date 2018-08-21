@@ -1,8 +1,9 @@
 <template>
-  <div class="add">
-    <v-header  :back="true">
-      <span slot="title">图书添加</span>>
+  <div class="detail">
+    <v-header :back="true">
+      <span slot="title">详情页</span>>
     </v-header>
+    {{$route.params.bid}}
   </div>
 </template>
 <script type="text/ecmascript-6">
@@ -15,4 +16,13 @@
 </script>
 
 <style type="text/stylus" lang="stylus" scoped>
+  .detail{
+    position :absolute;
+    left :0;
+    top:0;
+    bottom:0;
+    right:0;
+    background :#fff;
+    z-index :100;
+  }
 </style>

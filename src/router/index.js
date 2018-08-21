@@ -4,14 +4,15 @@ import Home from "../components/Home.vue"
 import Add from  "../components/Add.vue"
 import Collect from "../components/Collect.vue"
 import List from "../components/List.vue"
+import Detail from "../components/Detail.vue"
 
 Vue.use(Router)
 
 export default new Router({
   routes: [
     {
-      path:'',
-      component:Home
+      path:'/',
+      redirect:'/home'
     },
     {
       path:'/home',
@@ -22,6 +23,11 @@ export default new Router({
       component:List
     },
     {
+      path:'/datail/:bid',
+      component:Detail,
+      name:"Detail"
+    },
+    {
       path:'/collect',
       component:Collect
     },
@@ -29,5 +35,6 @@ export default new Router({
       path:'/add',
       component:Add
     }
-  ]
+  ],
+  linkActiveClass:'active'
 })
